@@ -11,7 +11,15 @@
     <div class="roq">
         {% for link in links %}
         <div class="col-lg-4">
-            <p class="text-center" style="font-size: 50px;">&#9786;</p>
+            <p class="text-center" style="font-size: 50px;">
+                {% if link['sentiment'] > 0 %}
+                    &#9786;
+                {% elif link['sentiment'] < 0 %}
+                    &#9785;
+                {% else %}
+                    &#128528;
+                {% endif %}
+            </p>
             <h2><a href="{{link['url']}}">{{link['title']}}</a></h2>
             {{link['summary']|striptags}}
         </div>
